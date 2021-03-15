@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:background="@drawable/wriutteq"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".add_subjectAdmin">
+
+
+        <EditText
+            android:id="@+id/ed1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="76dp"
+            android:layout_marginLeft="76dp"
+            android:layout_marginTop="35dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint=" اسم المادة "
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:selectAllOnFocus="true" />
+
+        <EditText
+            android:id="@+id/ed2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed1"
+            android:layout_alignStart="@+id/ed1"
+            android:layout_alignLeft="@+id/ed1"
+            android:layout_alignEnd="@+id/ed1"
+            android:layout_alignRight="@+id/ed1"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:ems="10"
+            android:hint=" المؤقت "
+            android:inputType="numberDecimal"
+
+            />
+
+
+        <EditText
+            android:id="@+id/in_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed2"
+            android:layout_alignStart="@+id/ed2"
+            android:layout_alignLeft="@+id/ed2"
+            android:layout_alignEnd="@+id/ed2"
+            android:layout_alignRight="@+id/ed2"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+
+            android:ems="10"
+            android:hint=" من تاريخ  "
+
+            />
+
+
+        <Button
+            android:id="@+id/btn_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/in_date"
+            android:layout_alignStart="@+id/in_date"
+            android:layout_alignLeft="@+id/in_date"
+            android:layout_alignEnd="@+id/in_date"
+            android:layout_alignRight="@+id/in_date"
+            android:background="#85818C"
+            android:text="اختر"
+            app:backgroundTint="#C7CACD" />
+
+
+        <EditText
+            android:id="@+id/in_date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_date"
+            android:layout_alignStart="@+id/btn_date"
+            android:layout_alignLeft="@+id/btn_date"
+            android:layout_alignEnd="@+id/btn_date"
+            android:layout_alignRight="@+id/btn_date"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:ems="10"
+            android:hint="   الى تاريخ  "
+
+            />
+
+
+        <Button
+            android:id="@+id/btn_date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/in_date2"
+            android:layout_alignStart="@+id/in_date2"
+            android:layout_alignLeft="@+id/in_date2"
+            android:layout_alignEnd="@+id/in_date2"
+            android:layout_alignRight="@+id/in_date2"
+            android:background="#85818C"
+            android:text="اختر"
+            app:backgroundTint="#C7CACD" />
+
+
+        <EditText
+            android:id="@+id/in_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/btn_date2"
+            android:layout_alignStart="@+id/btn_date2"
+            android:layout_alignLeft="@+id/btn_date2"
+            android:layout_alignEnd="@+id/btn_date2"
+            android:layout_alignRight="@+id/btn_date2"
+            android:hint=" من وقت  "
+
+            />
+
+        <Button
+            android:id="@+id/btn_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/in_time"
+            android:layout_alignStart="@+id/in_time"
+            android:layout_alignLeft="@+id/in_time"
+            android:layout_alignEnd="@+id/in_time"
+            android:layout_alignRight="@+id/in_time"
+            android:background="#85818C"
+            android:text="اختر"
+            app:backgroundTint="#C7CACD" />
+
+        <EditText
+            android:id="@+id/in_time2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/btn_time"
+            android:layout_alignStart="@+id/btn_time"
+            android:layout_alignLeft="@+id/btn_time"
+            android:layout_alignEnd="@+id/btn_time"
+            android:layout_alignRight="@+id/btn_time"
+            android:hint=" الى وقت  "
+
+            />
+
+        <Button
+            android:id="@+id/btn_time2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/in_time2"
+            android:layout_alignStart="@+id/in_time2"
+            android:layout_alignLeft="@+id/in_time2"
+            android:layout_alignEnd="@+id/in_time2"
+            android:layout_alignRight="@+id/in_time2"
+            android:background="#85818C"
+            android:text="اختر"
+            app:backgroundTint="#C7CACD" />
+
+
+        <Button
+            android:id="@+id/b1"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_time2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="21dp"
+            android:background="#C9FDA4"
+
+            android:text="تسجيل المادة "
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+
+
+            app:backgroundTint="#BCF6AB" />
+
+        <Button
+            android:id="@+id/b"
+            android:layout_width="319dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/b1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#C9FDA4"
+
+            android:text=" العودة "
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+
+
+            app:backgroundTint="#BCF6AB" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

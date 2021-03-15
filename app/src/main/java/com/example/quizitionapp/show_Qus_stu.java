@@ -500,7 +500,7 @@ public class show_Qus_stu extends AppCompatActivity {
 //                                            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes1, seconds1);
 //                                            text_view_countdown.setText(timeLeftFormatted);
 
-
+//weq
                                             if (Qus.size()==wrongAnswer+correctAnswer){
                                                 mCountDownTimer.cancel();
 

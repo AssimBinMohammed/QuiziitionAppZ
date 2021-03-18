@@ -1,5 +1,5 @@
-package com.example.quizitionapp;
 
+package com.example.quizitionapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -29,23 +29,43 @@ public class upload_image extends AppCompatActivity implements View.OnClickListe
 
     public static final String UPLOAD_URL = "http://192.168.1.2/Server/images/upload.php";
     public static final String UPLOAD_KEY = "image";
+
+
+
     private int PICK_IMAGE_REQUEST = 1;
+
     private Button buttonChoose;
     private Button buttonUpload;
+    private Button buttonView;
+
     private ImageView imageView;
     EditText editText;
+
     private Bitmap bitmap;
+
     private Uri filePath;
-    public String question;
+
+    public String question ;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_image);
+
         buttonChoose = (Button) findViewById(R.id.buttonChoose);
         buttonUpload = (Button) findViewById(R.id.buttonUpload);
+//        buttonView = (Button) findViewById(R.id.buttonViewImage);
+
         imageView = (ImageView) findViewById(R.id.imageView);
+
+
+
+
+//        final String dsg=t2.getText().toString().trim();
+
+
         buttonChoose.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
 
@@ -63,8 +83,8 @@ public class upload_image extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        editText = findViewById(R.id.editText);
-        question = editText.getText().toString().trim();
+        editText=findViewById(R.id.editText);
+        question=editText.getText().toString().trim();
         Log.i("data", String.valueOf(data));
         Log.i("resultCode", String.valueOf(resultCode));
         Log.i("requestCode", String.valueOf(requestCode));
@@ -84,44 +104,54 @@ public class upload_image extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public String getStringImage(Bitmap bmp) {
+    public String getStringImage(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.i("enc", encodedImage);
+        Log.i("enc",encodedImage);
         return encodedImage;
     }
 
-    private void uploadImage() {
-        class UploadImage extends AsyncTask<Bitmap, Void, String> {
+    private void uploadImage(){
+        class UploadImage extends AsyncTask<Bitmap,Void,String>{
+
             ProgressDialog loading;
             RequestHandler rh = new RequestHandler();
+
+
+
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(upload_image.this, "Uploading...", null, true, true);
+                loading = ProgressDialog.show(upload_image.this, "Uploading...", null,true,true);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
             }
 
             @Override
             protected String doInBackground(Bitmap... params) {
                 Bitmap bitmap = params[0];
                 String uploadImage = getStringImage(bitmap);
-                HashMap<String, String> data = new HashMap<>();
-                Log.i("question", question);
+
+
+
+                HashMap<String,String> data = new HashMap<>();
+
+                Log.i("question",question);
                 data.put(UPLOAD_KEY, uploadImage);
-                Log.i("question", question);
-                data.put("question", question);
-                Log.i("u", UPLOAD_KEY);
-                String result = rh.sendPostRequest(UPLOAD_URL, data);
-                Log.i("res", result);
+                Log.i("question",question);
+                data.put("question",question);
+                Log.i("u",UPLOAD_KEY);
+                String result = rh.sendPostRequest(UPLOAD_URL,data);
+
+                Log.i("res",result);
 
                 return result;
             }
@@ -138,7 +168,7 @@ public class upload_image extends AppCompatActivity implements View.OnClickListe
             showFileChooser();
         }
 
-        if (v == buttonUpload) {
+        if(v == buttonUpload){
             uploadImage();
         }
 //
@@ -153,10 +183,12 @@ public class upload_image extends AppCompatActivity implements View.OnClickListe
 //    }
 
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.back_write_qus, menu);
+        inflater.inflate( R.menu.back_write_qus, menu );
         return true;
 
     }
@@ -168,11 +200,11 @@ public class upload_image extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
 
             case R.id.back:
-                startActivity(new Intent(upload_image.this, show_subjectAdmin.class));
+                startActivity( new Intent( upload_image.this, show_subjectAdmin.class ) );
 
                 return true;
             default:
-                return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected( item );
 
 
         }

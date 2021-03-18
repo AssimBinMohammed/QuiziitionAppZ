@@ -1,8 +1,5 @@
-
 package com.example.quizitionapp;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -20,12 +17,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.quizitionapp.R ;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Calendar;
-import java.util.Date;
 
 public class add_subjectAdmin extends AppCompatActivity implements View.OnClickListener   {
     Button b, b1, b2;
@@ -75,15 +69,15 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
         btnTimePicker2.setOnClickListener(this);
 //        b.setOnClickListener(this);
 
-b.setOnClickListener( new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
+        b.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
+                startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
 
-        finish();
-    }
-} );
+                finish();
+            }
+        } );
         b1.setOnClickListener(new View.OnClickListener() {
 
 
@@ -201,10 +195,10 @@ b.setOnClickListener( new View.OnClickListener() {
 
                     }
                     else if (monthOfYear<10){
-                    first_date = dayOfMonth + "-" + "0"+(monthOfYear + 1) + "-" + year;
-                    txtDate.setText(dayOfMonth + "-" +"0"+ (monthOfYear + 1) + "-" + year);
+                        first_date = dayOfMonth + "-" + "0"+(monthOfYear + 1) + "-" + year;
+                        txtDate.setText(dayOfMonth + "-" +"0"+ (monthOfYear + 1) + "-" + year);
 
-                }
+                    }
                     else if (dayOfMonth<10){
                         first_date = "0"+dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
                         txtDate.setText("0"+dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
@@ -298,7 +292,7 @@ b.setOnClickListener( new View.OnClickListener() {
                         Log.i("fewefqeff",first_time);
 
                     }
-                   else if(hourOfDay<10){
+                    else if(hourOfDay<10){
 
                         first_time= "0"+hourOfDay + ":" + minute;
                         txtTime.setText("0"+hourOfDay + ":" + minute);
@@ -354,7 +348,7 @@ b.setOnClickListener( new View.OnClickListener() {
                         txtTime2.setText("0"+hourOfDay + ":" + "0"+minute);
 
                     }
-                   else if(hourOfDay<10){
+                    else if(hourOfDay<10){
 
                         second_time= "0"+hourOfDay + ":" + minute;
                         txtTime2.setText("0"+hourOfDay + ":" + minute);

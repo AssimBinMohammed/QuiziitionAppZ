@@ -1,4 +1,6 @@
+
 package com.example.quizitionapp;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +30,7 @@ public class write_Qus extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_write__qus);
+        setContentView( R.layout.activity_write__qus );
 
 
 
@@ -86,6 +88,18 @@ public class write_Qus extends AppCompatActivity {
                             field[5] = "right_answer";
                             field[6] = "Subject";
                             field[7]="pic";
+
+//                            Log.i("bit", getStringImage(bitmap));
+
+
+
+
+
+
+
+                            //Creating array for data
+
+
                             String[] data = new String[8];
                             data[0] = Question;
                             data[1] = option1;
@@ -95,6 +109,8 @@ public class write_Qus extends AppCompatActivity {
                             data[5] = right_answer;
                             data[6] = Subject;
                             data[7] = pic;
+
+
 
                             PutData putData = new PutData( "http://192.168.1.2/Server/Qus_sub.php", "POST", field, data );
                             if (putData.startPut()) {

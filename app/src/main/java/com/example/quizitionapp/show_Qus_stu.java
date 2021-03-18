@@ -1,4 +1,5 @@
 package com.example.quizitionapp;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -139,7 +140,7 @@ public class show_Qus_stu extends AppCompatActivity {
         imageView= (ImageView)findViewById(R.id.imageView);
         b1 = findViewById( R.id.b1);
         tv1=findViewById(R.id.tv1);
-        text_view_countdown = findViewById(R.id.text_view_countdown);
+        text_view_countdown = findViewById(R.id.text_view_countdow);
         startTimer();
 
 
@@ -234,6 +235,10 @@ public class show_Qus_stu extends AppCompatActivity {
 
                     }
 
+                    if (Qus.size()==wrongAnswer+correctAnswer){
+                        mCountDownTimer.cancel();
+
+                    }
                     Intent in = new Intent(getApplicationContext(), ResultActivity.class);
                     startActivity(in);
                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
@@ -500,11 +505,7 @@ public class show_Qus_stu extends AppCompatActivity {
 //                                            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes1, seconds1);
 //                                            text_view_countdown.setText(timeLeftFormatted);
 
-//weq
-                                            if (Qus.size()==wrongAnswer+correctAnswer){
-                                                mCountDownTimer.cancel();
 
-                                            }
                                             Intent in = new Intent(getApplicationContext(), ResultActivity.class);
                                             startActivity(in);
                                             Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();

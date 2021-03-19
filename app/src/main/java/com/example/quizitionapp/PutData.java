@@ -1,4 +1,3 @@
-
 package com.example.quizitionapp;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,12 +9,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
 public class PutData extends Thread {
     private String url, method;
     String result_data = "Empty";
     String[] data, field;
-
     public PutData(String url, String method, String[] field, String[] data) {
         this.url = url;
         this.method = method;
@@ -24,7 +21,6 @@ public class PutData extends Thread {
         System.arraycopy(field, 0, this.field, 0, field.length);
         System.arraycopy(data, 0, this.data, 0, data.length);
     }
-
     @Override
     public void run() {
         try {
@@ -57,33 +53,25 @@ public class PutData extends Thread {
             inputStream.close();
             httpURLConnection.disconnect();
             setData(result.toString());
-        } catch (IOException e) {
-            setData(e.toString());
         }
-    }
-
+        catch (IOException e) {
+            setData(e.toString());
+        }}
     public boolean startPut() {
         PutData.this.start();
         return true;
     }
-
     public boolean onComplete() {
         while (true) {
             if (!this.isAlive()) {
                 return true;
-            }
-        }
-    }
-
+            }}}
     public String getResult() {
         return this.getData();
     }
-
     public void setData(String result_data) {
         this.result_data = result_data;
     }
-
-
     public String getData() {
         return result_data;
     }

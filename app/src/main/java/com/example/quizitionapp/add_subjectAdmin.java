@@ -32,78 +32,67 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_add_subject_admin);
-        btnDatePicker = (Button) findViewById(R.id.btn_date);
-        btnTimePicker = (Button) findViewById(R.id.btn_time);
-        txtDate = (EditText) findViewById(R.id.in_date);
-        txtTime = (EditText) findViewById(R.id.in_time);
-        btnDatePicker2 = (Button) findViewById(R.id.btn_date2);
-        btnTimePicker2 = (Button) findViewById(R.id.btn_time2);
-        txtDate2 = (EditText) findViewById(R.id.in_date2);
-        txtTime2 = (EditText) findViewById(R.id.in_time2);
+        btnDatePicker = findViewById(R.id.btn_date);
+        btnTimePicker = findViewById(R.id.btn_time);
+        txtDate= findViewById(R.id.in_date);
+        txtTime= findViewById(R.id.in_time);
+        btnDatePicker2=findViewById(R.id.btn_date2);
+        btnTimePicker2 =findViewById(R.id.btn_time2);
+        txtDate2 = findViewById(R.id.in_date2);
+        txtTime2 = findViewById(R.id.in_time2);
         ed1 = findViewById(R.id.ed1);
         ed2 = findViewById(R.id.ed2);
-        b = (Button) findViewById(R.id.b);
+        b = findViewById(R.id.b);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
         tx2 = findViewById(R.id.textView2);
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
-
         btnDatePicker2.setOnClickListener(this);
         btnTimePicker2.setOnClickListener(this);
-        b.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
-                finish();
-            }});
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String subject, timer;
-                subject = String.valueOf(ed1.getText());
-                timer = String.valueOf(ed2.getText());
-                Log.i("poip", subject);
-                if ((!subject.equals(""))) {
-                    Log.i("equil", subject);
-                    Handler handler = new Handler();
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            String[] field = new String[6];
-                            field[0] = "Subject";
-                            field[1] = "timer";
-                            field[2] = "first_date";
-                            field[3] = "second_date";
-                            field[4] = "first_time";
-                            field[5] = "second_time";
-                            String[] data = new String[6];
-                            data[0] = subject;
-                            data[1] = timer;
-                            data[2] = first_date;
-                            data[3] = second_date;
-                            data[4] = first_time;
-                            data[5] = second_time;
-                            PutData putData = new PutData("http://192.168.1.2/Server/add_subject.php", "POST", field, data);
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
-                                    String result = putData.getResult();
-                                    char str = result.charAt(1);
-                                    Log.i("PutData", String.valueOf(str));
-                                    if ("o".equalsIgnoreCase(String.valueOf(str))) {
-                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
-                                        finish();
-                                    } else {
-                                        Toast.makeText((getApplicationContext()), result, Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                } }}); }
+        b.setOnClickListener(v -> {
+            startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
+            finish();
+        });
+        b1.setOnClickListener(v -> {
+            final String subject, timer;
+            subject = String.valueOf(ed1.getText());
+            timer = String.valueOf(ed2.getText());
+            Log.i("poip", subject);
+            if ((!subject.equals(""))) {
+                Log.i("equil", subject);
+                Handler handler = new Handler();
+                handler.post(() -> {
+                    String[] field = new String[6];
+                    field[0] = "Subject";
+                    field[1] = "timer";
+                    field[2] = "first_date";
+                    field[3] = "second_date";
+                    field[4] = "first_time";
+                    field[5] = "second_time";
+                    String[] data = new String[6];
+                    data[0] = subject;
+                    data[1] = timer;
+                    data[2] = first_date;
+                    data[3] = second_date;
+                    data[4] = first_time;
+                    data[5] = second_time;
+                    PutData putData = new PutData("http://192.168.1.2/Server/add_subject.php", "POST", field, data);
+                    if (putData.startPut()) {
+                        if (putData.onComplete()) {
+                            String result = putData.getResult();
+                            char str = result.charAt(1);
+                            Log.i("PutData", String.valueOf(str));
+                            if ("o".equalsIgnoreCase(String.valueOf(str))) {
+                                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
+                                finish();
+                            } else {
+                                Toast.makeText((getApplicationContext()), result, Toast.LENGTH_SHORT).show();
+                            }}}});
+            } else {
+                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+            } }); }
     @Override
     public void onClick(View v) {
         if (v == btnDatePicker) {
@@ -139,7 +128,7 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
             datePickerDialog.show();
         }
         if (v == btnDatePicker2) {
-           final Calendar c = Calendar.getInstance();
+            final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
@@ -198,7 +187,7 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
             timePickerDialog.show();
         }
         if (v == btnTimePicker2) {
-   final Calendar c = Calendar.getInstance();
+            final Calendar c = Calendar.getInstance();
             mHour = c.get(Calendar.HOUR_OF_DAY);
             mMinute = c.get(Calendar.MINUTE);
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {

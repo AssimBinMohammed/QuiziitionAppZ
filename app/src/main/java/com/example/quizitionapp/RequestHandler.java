@@ -25,7 +25,7 @@ public class RequestHandler {
             conn.setDoOutput(true);
             OutputStream os = conn.getOutputStream();
             BufferedWriter writer = new BufferedWriter(
-            new OutputStreamWriter(os, "UTF-8"));
+                    new OutputStreamWriter(os, "UTF-8"));
             writer.write(getPostDataString(postDataParams));
             writer.flush();
             writer.close();

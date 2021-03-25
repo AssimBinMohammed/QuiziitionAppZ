@@ -11,10 +11,16 @@ import java.net.URL;
 public class GetAlImages {
     public static String[] imageURLs;
     public static Bitmap[] bitmaps;
-    public static String[] question;
+    public static String[] Question;
+    public static String right_answer[];
+    public static String option1[];
+    public static String option2[];
+    public static String option3[];
+    public static String option4[];
+    public static String subject[];
     public static final String JSON_ARRAY="result";
     public static final String IMAGE_URL = "url";
-    private String json;
+    private final String json;
     private JSONArray urls;
     public GetAlImages(String json){
         this.json = json;
@@ -32,7 +38,6 @@ public class GetAlImages {
             url = new URL(jo.getString(IMAGE_URL));
             Log.i("lolololp", String.valueOf(url));
             image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
@@ -48,13 +53,23 @@ public class GetAlImages {
     public void getAllImages() throws JSONException {
         bitmaps = new Bitmap[urls.length()];
         imageURLs = new String[urls.length()];
-        question = new String[urls.length()];
+        Question = new String[urls.length()];
+        right_answer = new String[urls.length()];
+        option1 = new String[urls.length()];
+        option2 = new String[urls.length()];
+        option3 = new String[urls.length()];
+        option4 = new String[urls.length()];
+        subject = new String[urls.length()];
         for (int i = 0; i < urls.length(); i++) {
             JSONObject jo = null;
             imageURLs[i] = urls.getJSONObject(i).getString(IMAGE_URL);
             JSONObject jsonObject = urls.getJSONObject(i);
             bitmaps[i] = getImage(jsonObject);
-            Log.i("len", String.valueOf(urls.getJSONObject(i)));
-            Log.i("question", String.valueOf(question));
-            question[i] = urls.getJSONObject(i).getString("question");
+            Question[i] = urls.getJSONObject(i).getString("Question");
+            option1[i] = urls.getJSONObject(i).getString("option1");
+            option2[i] = urls.getJSONObject(i).getString("option2");
+            option3[i] = urls.getJSONObject(i).getString("option3");
+            option4[i] = urls.getJSONObject(i).getString("option4");
+            right_answer[i] = urls.getJSONObject(i).getString("right_answer");
+            subject[i] = urls.getJSONObject(i).getString("Subject");
         }}}

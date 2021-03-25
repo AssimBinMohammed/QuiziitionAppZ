@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:background="@drawable/wriutteq"
     android:fillViewport="true"> <!--IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +15,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         tools:context=".write_Qus">
-
         <EditText
             android:id="@+id/ed1"
             android:layout_width="336dp"
@@ -30,11 +28,9 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="اكتب السؤال "
-
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:selectAllOnFocus="true" />
-
         <EditText
             android:id="@+id/ed2"
             android:layout_width="wrap_content"
@@ -50,8 +46,6 @@
             android:ems="10"
             android:hint="الاختيار الاول "
             android:inputType="textPersonName" />
-
-
         <EditText
             android:id="@+id/ed3"
             android:layout_width="wrap_content"
@@ -67,8 +61,6 @@
             android:ems="10"
             android:hint="الاختيار الثاني  "
             android:inputType="textPersonName" />
-
-
         <EditText
             android:id="@+id/ed5"
             android:layout_width="wrap_content"
@@ -84,8 +76,6 @@
             android:ems="10"
             android:hint="الاختيار الثالث"
             android:inputType="textPersonName" />
-
-
         <EditText
             android:id="@+id/ed"
             android:layout_width="wrap_content"
@@ -101,8 +91,6 @@
             android:ems="10"
             android:hint="الاختيار الرابع "
             android:inputType="textPersonName" />
-
-
         <EditText
             android:id="@+id/ed4"
             android:layout_width="wrap_content"
@@ -118,81 +106,67 @@
             android:ems="10"
             android:hint="الاختيار الصحيح"
             android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/txt_pic"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/buttonChoose"
+            style="@android:style/Widget.Button"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ed4"
-            android:layout_alignStart="@+id/ed4"
-            android:layout_alignLeft="@+id/ed4"
-            android:layout_alignEnd="@+id/ed4"
-            android:layout_alignRight="@+id/ed4"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:ems="10"
-            android:hint="للمدخل التالي : اجب ب yes اذا تواجد للسؤال صورة واذا لا يوجد no  "
-            android:inputType="textMultiLine" />
-
-        <EditText
-            android:id="@+id/pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_pic"
-            android:layout_alignStart="@+id/txt_pic"
-            android:layout_alignLeft="@+id/txt_pic"
-            android:layout_alignEnd="@+id/txt_pic"
-            android:layout_alignRight="@+id/txt_pic"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:ems="10"
-            android:hint="yes /no"
-            android:inputType="textPersonName" />
-
-
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="51dp"
+            android:layout_marginLeft="51dp"
+            android:layout_marginTop="36dp"
+            android:background="#C9FDA4"
+            android:text="ارفق صورة"
+            android:textStyle="normal|bold"
+            app:backgroundTint="#C9FDA4" />
         <Button
             android:id="@+id/b1"
             style="@android:style/Widget.Button"
-            android:layout_width="313dp"
+            android:layout_width="268dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pic"
-            android:layout_alignParentStart="true"
+            android:layout_below="@+id/buttonChoose"
+            android:layout_alignStart="@+id/buttonChoose"
+            android:layout_alignEnd="@+id/buttonChoose"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="-3dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="117dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="2dp"
             android:background="#C9FDA4"
             android:text="تسجيل السؤال "
-
             android:textSize="16sp"
             android:textStyle="normal|bold"
             app:backgroundTint="#C9FDA4" />
-
         <Button
             android:id="@+id/button"
             style="@android:style/Widget.Button"
             android:layout_width="166dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/b1"
             android:layout_alignStart="@+id/b1"
             android:layout_alignLeft="@+id/b1"
             android:layout_alignTop="@+id/b1"
             android:layout_alignEnd="@+id/b1"
             android:layout_alignRight="@+id/b1"
             android:layout_alignBottom="@+id/b1"
-            android:layout_marginStart="87dp"
-            android:layout_marginLeft="87dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginBottom="-56dp"
+            android:layout_marginStart="71dp"
+            android:layout_marginLeft="71dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginRight="76dp"
+            android:layout_marginBottom="-55dp"
             android:background="#C9FDA4"
             android:text="خروج"
             android:textSize="16sp"
             android:textStyle="normal|bold"
             app:backgroundTint="#C9FDA4" />
-
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button"
+            android:layout_weight="1"
+            android:id="@+id/imageView" />
     </RelativeLayout>
 </ScrollView>

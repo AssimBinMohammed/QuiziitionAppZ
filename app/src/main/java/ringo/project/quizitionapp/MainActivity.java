@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     public static String name,password;
-    Button b1, b2;
+    Button b1, b2,b3;
     EditText ed1, ed2;
     TextView tx2;
     @Override
@@ -21,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
         ed2 = findViewById(R.id.ed2);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
+        b3= findViewById(R.id.b3);
         tx2 = findViewById(R.id.textView2);
+        b3.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, developers_screen.class));
+             });
         b2.setOnClickListener(v -> finishAffinity());
         b1.setOnClickListener(v -> {
             name=String.valueOf(ed1.getText());
@@ -39,15 +43,14 @@ public class MainActivity extends AppCompatActivity {
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             String result = putData.getResult();
-                            if ("success".equalsIgnoreCase(result.trim())){
-                                String nameAdmin="ezzo";
-                                String passAdmin="1";
-                                if ((name.equalsIgnoreCase(String.valueOf(nameAdmin)) & (password.equalsIgnoreCase(String.valueOf(passAdmin))))){
+                            if ("success".equalsIgnoreCase(result.trim()))
+                            {
+                                if ((name.equalsIgnoreCase("ezzoAdmin") & (password.equalsIgnoreCase("12qw89xd")))){
                                     Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(MainActivity.this, show_subjectAdmin.class));
                                     finish();
                                 }
-                                else if(((name.equalsIgnoreCase(("1")) & (password.equalsIgnoreCase(("1"))))))
+                                else if(((name.equalsIgnoreCase(("assimAdmin")) & (password.equalsIgnoreCase(("12qw89xd"))))))
                                 {
                                     Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(MainActivity.this, show_subjectAdmin.class));
@@ -65,4 +68,7 @@ public class MainActivity extends AppCompatActivity {
             else
             {
                 Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
-            } }); }}
+            } }); }
+
+
+}

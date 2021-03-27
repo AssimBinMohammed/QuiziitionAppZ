@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Testing"
         android:usesCleartextTraffic="true">
+        <activity android:name=".developers_screen"></activity>
         <activity android:name=".show_Qus_stu" />
         <activity android:name=".show_subjectStudent" />
         <activity android:name=".write_Qus" />

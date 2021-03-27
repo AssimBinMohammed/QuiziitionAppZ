@@ -1,9 +1,8 @@
-package com.example.quizitionapp;
+package ringo.project.quizitionapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,7 +71,6 @@ public class show_subjectAdmin extends AppCompatActivity {
             protected void onPostExecute(String data) {
                 try {
                     JSONArray ja = new JSONArray(data);
-                    JSONObject jo = null;
                     subject = new String[ja.length()];
                     timer = new String[ja.length()];
                     first_date = new String[ja.length()];
@@ -80,7 +78,7 @@ public class show_subjectAdmin extends AppCompatActivity {
                     first_time = new String[ja.length()];
                     second_time = new String[ja.length()];
                     for (int i = 0; i < ja.length(); i++) {
-                        jo = ja.getJSONObject(i);
+                        JSONObject jo = ja.getJSONObject(i);
                         subject[i] = jo.getString("Subject");
                         timer[i] = jo.getString("timer");
                         first_date[i] = jo.getString("first_date");
@@ -158,7 +156,6 @@ public class show_subjectAdmin extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(show_subjectAdmin.this, write_Qus.class));
-                    Log.i("vcvcv", subject[position]);
                     subjectName_actvity_show_Admin = subject[position];
                 }});
             return subject_list;

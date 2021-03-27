@@ -1,12 +1,10 @@
-package com.example.quizitionapp;
+package ringo.project.quizitionapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -37,10 +35,7 @@ public class show_Qus_stu extends AppCompatActivity {
     public static int seconds;
     Button b1;
     RadioGroup radio_g;
-    RadioButton r1;
-    RadioButton r2;
-    RadioButton r3;
-    RadioButton r4;
+    RadioButton r1,r2,r3,r4;
     TextView tv1, text_view_countdown;
     public static int marks = 0;
     public static int correctAnswer = 0;
@@ -60,7 +55,7 @@ public class show_Qus_stu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show__qus_stu);
-        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView);
         b1 = findViewById(R.id.b1);
         tv1 = findViewById(R.id.tv1);
         text_view_countdown = findViewById(R.id.text_view_countdow);
@@ -86,11 +81,9 @@ public class show_Qus_stu extends AppCompatActivity {
         seconds = (int) (mTimeLeftInMillis / 1000) % 60;
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         text_view_countdown.setText(timeLeftFormatted);
-        Log.i("lylyl22", String.valueOf(seconds));
         if (minutes == 0 && seconds == 0 && (wrongAnswer > 0 || correctAnswer > 0)) {
             imageView.setImageBitmap(null);
             marks = correctAnswer;
-            Log.i("tawlwllg", String.valueOf(marks));
             String[] field = new String[3];
             field[0] = "username";
             field[1] = "subjectName";
@@ -100,15 +93,10 @@ public class show_Qus_stu extends AppCompatActivity {
             data[1] = SubjectName;
             data[2] = String.valueOf(marks);
             PutData putData = new PutData("http://192.168.1.2/Server/marks.php", "POST", field, data);
-            Log.i("t5555", String.valueOf(marks));
             if (putData.startPut()) {
-                Log.i("t666", String.valueOf(marks));
                 if (putData.onComplete()) {
-                    Log.i("t777", String.valueOf(marks));
                     String result = putData.getResult();
-                    char str = result.charAt(6);
-                    Log.i("PutDatddda0", String.valueOf(str));
-                    if ("p".equalsIgnoreCase(String.valueOf(str))) {
+                    if ("Sign Up Success".equalsIgnoreCase(result.trim())) {
                         Intent in = new Intent(getApplicationContext(), ResultActivity.class);
                         startActivity(in);
                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
@@ -154,12 +142,6 @@ public class show_Qus_stu extends AppCompatActivity {
                             righ.add(GetAlImages.right_answer[i].trim());
                             imageArray_url.add(GetAlImages.imageURLs[i]);
                             imageArray_bit.add(GetAlImages.bitmaps[i]);
-                            Log.i("Quesddtion", String.valueOf(GetAlImages.Question[i]));
-                            Log.i("Questddion", String.valueOf(GetAlImages.option1[i]));
-                            Log.i("Questhhion", String.valueOf(GetAlImages.option2[i]));
-                            Log.i("Quesddtion", String.valueOf(GetAlImages.option3[i]));
-                            Log.i("Quedddstion", String.valueOf(GetAlImages.option4[i]));
-                            Log.i("Quesddtion", String.valueOf(GetAlImages.right_answer[i]));
                         }}
                     ArrayList<String> arrayList = new ArrayList<>();
                     arrayList.add(op1.get(0));
@@ -187,76 +169,67 @@ public class show_Qus_stu extends AppCompatActivity {
                         r3.setText(arrayList.get(2));
                         r4.setText(arrayList.get(3));
                     }
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (radio_g.getCheckedRadioButtonId() == -1) {
-                                Toast.makeText(getApplicationContext(), "الرجاء اختيار اجابة", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            RadioButton uans = findViewById(radio_g.getCheckedRadioButtonId());
-                            String ansText = uans.getText().toString().trim();
-                            Log.i("ansText", ansText);
-                            if (ansText.equals(righ.get(secondQus).trim())) {
-                                Log.i("correctAnswer", String.valueOf(correctAnswer));
-                                correctAnswer++;
+                    b1.setOnClickListener(v1 -> {
+                        if (radio_g.getCheckedRadioButtonId() == -1) {
+                            Toast.makeText(getApplicationContext(), "الرجاء اختيار اجابة", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        RadioButton uans = findViewById(radio_g.getCheckedRadioButtonId());
+                        String ansText = uans.getText().toString().trim();
+                        if (ansText.equals(righ.get(secondQus).trim())) {
+                            correctAnswer++;
+                        } else {
+                            wrongAnswer++;
+                        }
+                        secondQus++;
+                        if (secondQus < Qus.size()) {
+                            ArrayList<String> arrayList1 = new ArrayList<>();
+                            arrayList1.add(op1.get(secondQus));
+                            arrayList1.add(op2.get(secondQus));
+                            arrayList1.add(op3.get(secondQus));
+                            arrayList1.add(op4.get(secondQus));
+                            Collections.shuffle(arrayList1);
+                            if (imageArray_url.get(secondQus).equals("null")) {
+                                imageView.setImageBitmap(null);
+                                tv1.setText(Qus.get(secondQus));
+                                r1.setText(arrayList1.get(0));
+                                r2.setText(arrayList1.get(1));
+                                r3.setText(arrayList1.get(2));
+                                r4.setText(arrayList1.get(3));
                             } else {
-                                Log.i("wrongAnswer", String.valueOf(wrongAnswer));
-                                wrongAnswer++;
+                                Q1 = Qus.get(secondQus);
+                                tv1.setText(Qus.get(secondQus));
+                                imageView.setImageBitmap(imageArray_bit.get(secondQus));
+                                r1.setText(arrayList1.get(0));
+                                r2.setText(arrayList1.get(1));
+                                r3.setText(arrayList1.get(2));
+                                r4.setText(arrayList1.get(3));
                             }
-                            secondQus++;
-                            if (secondQus < Qus.size()) {
-                                ArrayList<String> arrayList = new ArrayList<>();
-                                arrayList.add(op1.get(secondQus));
-                                arrayList.add(op2.get(secondQus));
-                                arrayList.add(op3.get(secondQus));
-                                arrayList.add(op4.get(secondQus));
-                                Collections.shuffle(arrayList);
-                                if (imageArray_url.get(secondQus).equals("null")) {
-                                    imageView.setImageBitmap(null);
-                                    tv1.setText(Qus.get(secondQus));
-                                    r1.setText(arrayList.get(0));
-                                    r2.setText(arrayList.get(1));
-                                    r3.setText(arrayList.get(2));
-                                    r4.setText(arrayList.get(3));
-                                } else {
-                                    Q1 = Qus.get(secondQus);
-                                    tv1.setText(Qus.get(secondQus));
-                                    imageView.setImageBitmap(imageArray_bit.get(secondQus));
-                                    r1.setText(arrayList.get(0));
-                                    r2.setText(arrayList.get(1));
-                                    r3.setText(arrayList.get(2));
-                                    r4.setText(arrayList.get(3));
-                                }
-                            } else {
-                                marks = correctAnswer;
-                                Log.i("tag", String.valueOf(marks));
-                                String[] field = new String[3];
-                                field[0] = "username";
-                                field[1] = "subjectName";
-                                field[2] = "marks";
-                                String[] data = new String[3];
-                                data[0] = name;
-                                data[1] = SubjectName;
-                                data[2] = String.valueOf(marks);
-                                PutData putData = new PutData("http://192.168.1.2/Server/marks.php", "POST", field, data);
-                                Log.i("t5555", String.valueOf(marks));
-                                if (putData.startPut()) {
-                                    if (putData.onComplete()) {
-                                        String result = putData.getResult();
-                                        char str = result.charAt(6);
-                                        Log.i("PutData0", String.valueOf(str));
-                                        if ("p".equalsIgnoreCase(String.valueOf(str))) {
-                                            mCountDownTimer.cancel();
-                                            Intent in = new Intent(getApplicationContext(), ResultActivity.class);
-                                            startActivity(in);
-                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                            finish();
-                                        }
+                        } else {
+                            marks = correctAnswer;
+                            String[] field = new String[3];
+                            field[0] = "username";
+                            field[1] = "subjectName";
+                            field[2] = "marks";
+                            String[] data = new String[3];
+                            data[0] = name;
+                            data[1] = SubjectName;
+                            data[2] = String.valueOf(marks);
+                            PutData putData = new PutData("http://192.168.1.2/Server/marks.php", "POST", field, data);
+                            if (putData.startPut()) {
+                                if (putData.onComplete()) {
+                                    String result = putData.getResult();
+                                    if ("Sign Up Success".equalsIgnoreCase(result.trim())) {
+                                        mCountDownTimer.cancel();
+                                        Intent in = new Intent(getApplicationContext(), ResultActivity.class);
+                                        startActivity(in);
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                    }}}
-                            radio_g.clearCheck();
-                        }});
+                                        finish();
+                                    }
+                                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                }}}
+                        radio_g.clearCheck();
+                    });
                 }catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
                 }}

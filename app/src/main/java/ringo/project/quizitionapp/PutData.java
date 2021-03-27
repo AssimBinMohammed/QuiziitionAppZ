@@ -1,6 +1,4 @@
-
-package com.example.quizitionapp;
-
+package ringo.project.quizitionapp;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

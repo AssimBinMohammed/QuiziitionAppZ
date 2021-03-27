@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
+
     <Button
         android:id="@+id/b1"
         android:layout_width="219dp"
@@ -22,10 +23,11 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="90dp"
         android:layout_marginBottom="20dp"
-        android:text="تسجيل الدخول"
-        android:textColor="#DD6262"
-        android:textSize="24sp"
         android:background="#EBEFF3"
+        android:text="تسجيل الدخول"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:backgroundTint="#C5E6F6" />
     <EditText
         android:id="@+id/ed1"
@@ -43,6 +45,7 @@
         android:hint="اسم المستخدم"
         android:inputType="textPersonName"
         android:textColor="#170607" />
+
     <Button
         android:id="@+id/b2"
         android:layout_width="wrap_content"
@@ -56,7 +59,8 @@
         android:layout_marginBottom="91dp"
         android:background="#EBEFF3"
         android:text="خروج"
-        android:textColor="#DD6262"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:backgroundTint="#C5E6F6" />
     <EditText

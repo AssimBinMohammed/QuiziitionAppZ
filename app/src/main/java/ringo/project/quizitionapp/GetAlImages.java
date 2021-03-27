@@ -1,7 +1,6 @@
-package com.example.quizitionapp;
+package ringo.project.quizitionapp;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,14 +19,11 @@ public class GetAlImages {
     public static String subject[];
     public static final String JSON_ARRAY="result";
     public static final String IMAGE_URL = "url";
-    private final String json;
     private JSONArray urls;
     public GetAlImages(String json){
-        this.json = json;
         try {
             JSONObject jsonObject = new JSONObject(json);
             urls = jsonObject.getJSONArray(JSON_ARRAY);
-            Log.i("url", String.valueOf(urls));
         } catch (JSONException e) {
             e.printStackTrace();
         } }
@@ -36,7 +32,6 @@ public class GetAlImages {
         Bitmap image = null;
         try {
             url = new URL(jo.getString(IMAGE_URL));
-            Log.i("lolololp", String.valueOf(url));
             image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
         }
         catch (MalformedURLException e) {

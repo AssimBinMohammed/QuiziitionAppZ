@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.quizitionapp"
+        applicationId "ringo.project.quizitionapp"
         minSdkVersion 18
         targetSdkVersion 30
         versionCode 1

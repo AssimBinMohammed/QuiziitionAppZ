@@ -1,10 +1,9 @@
-package com.example.quizitionapp;
+package ringo.project.quizitionapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,10 +17,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 public class add_subjectAdmin extends AppCompatActivity implements View.OnClickListener   {
-    Button b, b1, b2;
+    Button b, b1, b2,btnDatePicker, btnTimePicker, btnDatePicker2, btnTimePicker2;
     EditText ed1, ed2;
     TextView  tx2;
-    Button btnDatePicker, btnTimePicker, btnDatePicker2, btnTimePicker2;
     EditText txtDate, txtTime, txtDate2, txtTime2;
     int mYear, mMonth, mDay, mHour, mMinute;
     public String first_date = "";
@@ -58,9 +56,7 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
             final String subject, timer;
             subject = String.valueOf(ed1.getText());
             timer = String.valueOf(ed2.getText());
-            Log.i("poip", subject);
             if ((!subject.equals(""))) {
-                Log.i("equil", subject);
                 Handler handler = new Handler();
                 handler.post(() -> {
                     String[] field = new String[6];
@@ -81,9 +77,7 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             String result = putData.getResult();
-                            char str = result.charAt(1);
-                            Log.i("PutData", String.valueOf(str));
-                            if ("o".equalsIgnoreCase(String.valueOf(str))) {
+                            if ("done".equalsIgnoreCase(result.trim())) {
                                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(add_subjectAdmin.this, show_subjectAdmin.class));
                                 finish();
@@ -100,9 +94,6 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
-            Log.i("year", String.valueOf(mYear));
-            Log.i("MONTH", String.valueOf(mMonth+1));
-            Log.i("day", String.valueOf(mDay));
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -124,7 +115,6 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
                         txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                     } }}
                     , mYear, mMonth, mDay);
-            Log.i("dating", first_date);
             datePickerDialog.show();
         }
         if (v == btnDatePicker2) {
@@ -132,7 +122,6 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
-            Log.i("year", String.valueOf(mYear));
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -152,7 +141,6 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
                         txtDate2.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                     }}
             }, mYear, mMonth, mDay);
-            Log.i("date", second_date);
             datePickerDialog.show();
         }
         if (v == btnTimePicker) {
@@ -165,25 +153,18 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
                     if(hourOfDay<10 && minute<10){
                         first_time= "0"+hourOfDay + ":" +"0"+ minute;
                         txtTime.setText("0"+hourOfDay + ":" + "0"+minute);
-                        Log.i("fewefqeff",first_time);
                     }
                     else if(hourOfDay<10){
                         first_time= "0"+hourOfDay + ":" + minute;
                         txtTime.setText("0"+hourOfDay + ":" + minute);
-                        Log.i("ffgtgtf",first_time);
                     }   else if(minute<10){
                         first_time= hourOfDay + ":" + "0"+minute;
                         txtTime.setText(hourOfDay + ":" + "0"+minute);
-                        Log.i("f111f",first_time);
                     } else{
-                        Log.i("f222f",first_time);
                         first_time= hourOfDay + ":" + minute;
                         txtTime.setText(hourOfDay + ":" + minute);
-                    }
-                    Log.i("h", String.valueOf(hourOfDay));
-                }
+                    } }
             }, mHour, mMinute, false);
-            Log.i("first_time", first_time);
             timePickerDialog.show();
         }
         if (v == btnTimePicker2) {
@@ -208,7 +189,6 @@ public class add_subjectAdmin extends AppCompatActivity implements View.OnClickL
                         txtTime2.setText(hourOfDay + ":" + minute);
                     } }
             }, mHour, mMinute, false);
-            Log.i("first_time", first_time);
             timePickerDialog.show();
         } }
     @Override

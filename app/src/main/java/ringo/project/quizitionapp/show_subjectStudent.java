@@ -1,9 +1,8 @@
-package com.example.quizitionapp;
+package ringo.project.quizitionapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -84,7 +83,6 @@ public class show_subjectStudent extends AppCompatActivity {
                 return super.onOptionsItemSelected( item );
         } }
     public void fetch_data_into_array(View view) {
-
         class dbManager extends AsyncTask<String, Void, String> {
             protected void onPostExecute(String data) {
                 try {
@@ -100,7 +98,6 @@ public class show_subjectStudent extends AppCompatActivity {
                     String currentDateandTime = sdf.format( new Date() );
                     SimpleDateFormat sdf3 = new SimpleDateFormat( "HH:mm", Locale.getDefault() );
                     String currentDateandTime3 = sdf3.format( new Date() );
-                    Log.i( "time", currentDateandTime3 );
                     for (int i = 0; i < ja.length(); i++) {
                         jo = ja.getJSONObject( i );
                         subject[i] = jo.getString( "Subject" );
@@ -140,7 +137,6 @@ public class show_subjectStudent extends AppCompatActivity {
                     if (subject2.length==0){
                         none.setText("لا يوجد اختبار ");
                     }
-                    Log.i( "sub2", String.valueOf( subject2.length ) );
                     myadapter adptr = new myadapter( getApplicationContext(), subject2, timer2, first_date2, second_date2, first_time2, second_time2 );
                     lv.setAdapter( adptr );
                 } catch (Exception ex) {
@@ -163,7 +159,7 @@ public class show_subjectStudent extends AppCompatActivity {
                 }
                 catch (Exception ex) {
                     return ex.getMessage();
-                } }}
+                }}}
         dbManager obj = new dbManager();
         obj.execute( apiurl );
     }
@@ -208,13 +204,10 @@ public class show_subjectStudent extends AppCompatActivity {
             s_date.setText( second_date[position] );
             f_time.setText( first_time[position] );
             s_time.setText( second_time[position] );
-            b_add.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity( new Intent( show_subjectStudent.this, show_Qus_stu.class ) );
-                    Log.i( "vcvcv", subject[position] );
-                    subjectName_actvity_show_Student = subject[position];
-                    timer1 = Integer.parseInt( timer[position] );
-                }} );
+            b_add.setOnClickListener(v -> {
+                startActivity( new Intent( show_subjectStudent.this, show_Qus_stu.class ) );
+                subjectName_actvity_show_Student = subject[position];
+                timer1 = Integer.parseInt( timer[position] );
+            });
             return subject_list;
         }}}

@@ -1,4 +1,4 @@
-package com.example.quizitionapp;
+package ringo.project.quizitionapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
